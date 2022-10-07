@@ -34,7 +34,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 55px;
+    min-width: 55px;
 }
 
 .field .value {
