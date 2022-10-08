@@ -48,7 +48,7 @@ function onTimerStart () {
     const deltaTime = refs.endDate - Date.now();
     if(deltaTime <= 0) {
       timerStop();
-      Notify.info('Time is up');
+      Notify.info('Time is up', {cssAnimationStyle: 'zoom', closeButton: 'true',});
       return;
     };
     toRenderTimer(convertMs(deltaTime));
@@ -57,7 +57,7 @@ function onTimerStart () {
 
 function onTimerStop () {
   timerStop ();
-  Notify.info('The timer is stopped');
+  Notify.info('The timer is stopped', {cssAnimationStyle: 'zoom',});
 }
 
 function timerStop () {
