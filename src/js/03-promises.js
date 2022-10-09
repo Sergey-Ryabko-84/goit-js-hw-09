@@ -7,17 +7,19 @@ formEl.addEventListener('submit', onFormSubmit);
 function onFormSubmit (e) {
   e.preventDefault();
 
-  let delay = Number(formEl.delay.value);
-  let step = Number(formEl.step.value);
-  let amount = Number(formEl.amount.value);
+  const delay = Number(formEl.delay.value);
+  const step = Number(formEl.step.value);
+  const amount = Number(formEl.amount.value);
   
   if (delay < 0 || step < 0 || amount <= 0) {
     Notify.warning('The values of the input fields must be positive', {clickToClose: true, width: '350px', timeout: 5000,});
     return;
    }
+
+   let totalDelay = delay;
   
   for (let i = 1; i <= amount; i++) {
-    createPromise(i, delay)
+    createPromise(i, totalDelay)
     .then(({ position, delay }) => {
       Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {useIcon: false, width: '240px', timeout: 7000,});
     })
@@ -25,7 +27,7 @@ function onFormSubmit (e) {
       Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {useIcon: false, width: '240px', timeout: 7000,});
     });
 
-    delay += step;
+    totalDelay += step;
   }
 }
 
